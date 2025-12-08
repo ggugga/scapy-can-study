@@ -1,5 +1,5 @@
 
-![1단계: 가상 CAN 인터페이스 (vcan0) 만들기] (./images/image1.png)
+![1단계: 가상 CAN 인터페이스 (vcan0) 만들기](./images/image1.png)
 
 ##과제: ifconfig vcan0 명령어 입력하고 출력결과 복사 붙여넣기 업로드
 
