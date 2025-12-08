@@ -1,19 +1,19 @@
-
-![1단계: 가상 CAN 인터페이스 (vcan0) 만들기](./images/image1.png)
+가상 CAN 인터페이스 (vcan0) 만들기
+![가상 CAN 인터페이스 (vcan0) 만들기](./images/image1.png)
 
 ##과제: ifconfig vcan0 명령어 입력하고 출력결과 복사 붙여넣기 업로드
 
 다른 창 열고
-(./images/image2.png)
+![](./images/image2.png)
 
 다시 원래창으로 돌아와서
-(./images/image3.png)
+![](./images/image3.png)
 원래의 터미널로 돌아와서 CAN 소켓 모듈 불러오기
-(./images/image4.png)
+![](./images/image4.png)
 
 소켓 연결하기
 아까 만든 vcan0 인터페이스에 연결
-(./images/image5.png)
+![](./images/image5.png)
 
 
 악성(?) 패킷 만들기
@@ -30,11 +30,11 @@ packet = CAN(identifier=0x123, data=b'\x11\x22\x33\x44\x55\x66\x77\x88')
 ​내가 만든 패킷 정보 확인
 packet.show()
 
-(./images/image6.png)
-(./images/image7.png)
+![](./images/image6.png)
+![](./images/image7.png)
 
 소켓을 보내면?
-(./images/image8.png)
+![](./images/image8.png)
 
 #과제: 출력결과 복사 붙여넣기
 
