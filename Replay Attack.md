@@ -7,11 +7,13 @@ Replay Attack
 
 ![](./images/replay1.png)
 
-modprobe: 기능 활성화 (뇌에 지식 주입)
+rm candump-*.log는 실습환경 초기화
 
-add: 장치 생성 (하드웨어 조립)
+modprobe: 기능 활성화 
 
-set up: 전원 켜기 (작동 시작)
+add: 장치 생성 
+
+set up: 전원 켜기 
 
 
 
@@ -20,6 +22,8 @@ set up: 전원 켜기 (작동 시작)
 
 ![](./images/replay2.png)
 
+candump -l vcan0: 로깅 옵션(-l)을 사용하여 녹음 내용을 로그 파일로 저장
+
 
 
 
@@ -27,7 +31,7 @@ set up: 전원 켜기 (작동 시작)
 
 ![](./images/replay3.png)
 
-신호가 연속으로 3번 온 상황
+정상적인 문 열림 신호를 3번 보내는 과정
 
 ![](./images/replay4.png)
 
@@ -39,7 +43,7 @@ set up: 전원 켜기 (작동 시작)
 
 ![](./images/replay7.png)
 
-이제 녹음을 중단하고 로그 파일을 재실행
+녹음을 중단(Ctrl+C)하고 ls로 파일 확인 후 공격(canplayer) 실행
 
 ![](./images/replay8.png)
 
@@ -47,3 +51,5 @@ set up: 전원 켜기 (작동 시작)
 
 재전송 공격 성공!
 
+##과제
+재전송공격 과정 1~3줄 요약 정리
