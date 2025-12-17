@@ -1,0 +1,62 @@
+>>> p = IP(dst="8.8.8.8") / ICMP()   # 기본은 type=8 (echo-request)
+...: p.show()
+...: send(p)
+###[ IP ]###
+  version   = 4
+  ihl       = None
+  tos       = 0x0
+  len       = None
+  id        = 1
+  flags     =
+  frag      = 0
+  ttl       = 64
+  proto     = icmp
+  chksum    = None
+  src       = 172.23.176.231
+  dst       = 8.8.8.8
+  \options   \
+###[ ICMP ]###
+     type      = echo-request
+     code      = 0
+     chksum    = None
+     id        = 0x0
+     seq       = 0x0
+     unused    = ''
+
+.
+Sent 1 packets.
+
+//정상
+###[ IP ]###
+  version   = 4
+  ihl       = None
+  tos       = 0x0
+  len       = None
+  id        = 1
+  flags     =
+  frag      = 0
+  ttl       = 64
+  proto     = tcp
+  chksum    = None
+  src       = 172.23.176.231
+  dst       = Net("google.com/32")
+  \options   \
+###[ TCP ]###
+     sport     = ftp_data
+     dport     = http
+     seq       = 0
+     ack       = 0
+     dataofs   = None
+     reserved  = 0
+     flags     = S
+     window    = 8192
+     chksum    = None
+     urgptr    = 0
+     options   = ''
+
+.
+Sent 1 packets.
+
+// 거절
+.
+Sent 1 packets.
