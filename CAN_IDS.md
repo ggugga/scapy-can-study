@@ -115,7 +115,6 @@ cansend vcan0 100#0102030405060708
 
 ![Normal and Mixed Traffic Send](images/ids7.png)
 
----
 
 **[IDS 탐지 확인 로그]**
 ![Injection Detection Result 2](images/ids8.png)
