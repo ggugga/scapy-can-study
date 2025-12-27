@@ -71,9 +71,8 @@ ip link show vcan0
 sudo apt update
 sudo apt install -y python3-can
 ```
-
-![Package Update](images/ids4-1.png)
-![Package Install](images/ids4-2.png)
+### [Terminal 1] CAN 환경 준비 
+![](images/ids1.png)
 
 ---
 
@@ -84,14 +83,30 @@ sudo apt install -y python3-can
 sudo python3 ids.py
 ```
 
-![Python Command Check](images/ids2.png)
-![IDS Start Confirmation](images/ids4-3.png)
+![](images/ids4-1.png)
+![](images/ids4-2.png)
+이후 clear해준 다음
+![](images/ids4-3.png)
 
 ---
 
 ### [Terminal 3] CAN 트래픽 생성 (공격자 시점)
 
-#### 1. 정상 트래픽 전송
+#### 1. Injection 공격 (Whitelist 외 ID)
+비인가된 CAN ID(`0x555`)를 전송하여 IDS가 이를 즉각 탐지하는지 확인합니다.
+
+```bash
+# Injection 공격 패킷 전송
+cansend vcan0 555#DEADBEEF
+```
+
+![](images/ids5.png)
+
+**[IDS 탐지 확인 로그]**
+![](images/ids6.png)
+
+
+#### 2. 정상 트래픽 전송
 허용된 ID(`0x100`)를 정상 주기로 보낼 때, IDS는 아무런 탐지 로그를 출력하지 않습니다.
 
 ```bash
@@ -102,20 +117,9 @@ cansend vcan0 100#0102030405060708
 
 ---
 
-#### 2. Injection 공격 (Whitelist 외 ID)
-비인가된 CAN ID(`0x555`)를 전송하여 IDS가 이를 즉각 탐지하는지 확인합니다.
-
-```bash
-# Injection 공격 패킷 전송
-cansend vcan0 555#DEADBEEF
-```
-
-![Injection Packet Send 1](images/ids3.png)
-![Injection Packet Send 2](images/ids5.png)
-
 **[IDS 탐지 확인 로그]**
-![Injection Detection Result 1](images/ids6.png)
 ![Injection Detection Result 2](images/ids8.png)
+아무것도 탐지되지 않습니다.
 
 ---
 
@@ -129,7 +133,10 @@ while true; do cansend vcan0 200#AAAAAAAAAAAAAA; done
 
 ![DoS Attack Simulation](images/ids9.png)
 
+**[IDS 탐지 확인 로그]**
+![Injection Detection Result 2](images/ids10.png)
+
 ---
 
 ## 4. 실습 결론
-가상 CAN 인터페이스(`vcan0`)를 구성한 후 파이썬 기반 IDS를 실행하여 정상 CAN 트래픽, 비인가 ID 인젝션 공격, 과도한 전송 주기의 Replay/DoS 공격을 각각 발생시켰습니다. 실습 결과 IDS가 설정된 보안 정책(화이트리스트 및 주기 분석)에 따라 공격을 정상적으로 구분하여 탐지함을 확인하고 성공적으로 실습을 마무리하였습니다.
+IDS에서 설정한 규칙(화이트리스트 및 주기 분석)에 따라 공격을 정상적으로 구분하여 탐지함을 확인하고 성공적으로 실습을 마무리하였습니다.
